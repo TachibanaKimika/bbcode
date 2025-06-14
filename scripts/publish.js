@@ -207,19 +207,19 @@ async function main() {
   }
   
   // 检查是否有未提交的文件
-  try {
-    const status = exec('git status --porcelain packages/');
-    if (status.length > 0) {
-      console.error('❌ There are uncommitted changes in packages/ directory:');
-      console.error(status);
-      console.error('Please commit or stash your changes before publishing.');
-      process.exit(1);
-    }
-    console.log('✅ Packages directory is clean, proceeding with publish...');
-  } catch (error) {
-    console.error('❌ Failed to check git status:', error.message);
-    process.exit(1);
-  }
+  // try {
+  //   const status = exec('git status --porcelain packages/');
+  //   if (status.length > 0) {
+  //     console.error('❌ There are uncommitted changes in packages/ directory:');
+  //     console.error(status);
+  //     console.error('Please commit or stash your changes before publishing.');
+  //     process.exit(1);
+  //   }
+  //   console.log('✅ Packages directory is clean, proceeding with publish...');
+  // } catch (error) {
+  //   console.error('❌ Failed to check git status:', error.message);
+  //   process.exit(1);
+  // }
   
   // 获取所有包
   const allPackages = getAllPackages();

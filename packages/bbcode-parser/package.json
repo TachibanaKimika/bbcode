@@ -1,6 +1,6 @@
 {
   "name": "@onachi/bbcode-parser",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Unified plugin to parse BBCode text into bbast syntax tree",
   "type": "module",
   "exports": {
@@ -37,13 +37,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@onachi/bbast-util-from-bbcode": "0.0.2"
+    "@onachi/bbast-util-from-bbcode": "0.0.3"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
     "rehype-stringify": "^10.0.1",
-    "@onachi/bbast-util-to-hast": "0.0.2"
+    "@onachi/bbast-util-to-hast": "0.0.3"
   }
 }

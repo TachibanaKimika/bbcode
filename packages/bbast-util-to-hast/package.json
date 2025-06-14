@@ -1,6 +1,6 @@
 {
   "name": "@onachi/bbast-util-to-hast",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Utility to convert bbast syntax tree to hast (HTML AST)",
   "type": "module",
   "exports": {
@@ -39,7 +39,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@onachi/bbast": "0.0.3",
+    "@onachi/bbast": "0.0.4",
     "@types/hast": "^3.0.4",
     "@types/unist": "^3"
   },

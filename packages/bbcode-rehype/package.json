@@ -1,6 +1,6 @@
 {
   "name": "@onachi/bbcode-rehype",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Unified plugin to convert BBCode AST to HAST (HTML Abstract Syntax Tree)",
   "type": "module",
   "exports": {
@@ -37,16 +37,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@onachi/bbast-util-to-hast": "0.0.2"
+    "@onachi/bbast-util-to-hast": "0.0.3"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
     "rehype-stringify": "^10.0.1",
-    "@onachi/bbast": "0.0.3",
-    "@onachi/bbast-util-from-bbcode": "0.0.2",
-    "@onachi/bbcode-parser": "0.0.2",
+    "@onachi/bbast": "0.0.4",
+    "@onachi/bbast-util-from-bbcode": "0.0.3",
+    "@onachi/bbcode-parser": "0.0.3",
     "unified": "^11.0.5",
     "@types/hast": "3.0.4"
   }
