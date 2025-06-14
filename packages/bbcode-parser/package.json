@@ -1,0 +1,49 @@
+{
+  "name": "@onachi/bbcode-parser",
+  "version": "0.0.2",
+  "description": "Unified plugin to parse BBCode text into bbast syntax tree",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "prepare": "pnpm run build",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "clean": "rimraf dist",
+    "dev": "vite build --watch",
+    "test": "vitest run",
+    "test:coverage": "vitest --coverage",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "bbcode",
+    "ast",
+    "parse",
+    "parser",
+    "bbast",
+    "unist",
+    "utility",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@onachi/bbast-util-from-bbcode": "0.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "rehype-stringify": "^10.0.1",
+    "@onachi/bbast-util-to-hast": "0.0.2"
+  }
+}

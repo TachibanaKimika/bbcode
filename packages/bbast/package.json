@@ -1,0 +1,43 @@
+{
+  "name": "@onachi/bbast",
+  "version": "0.0.3",
+  "description": "BBCode abstract syntax tree types and utilities based on unist",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "prepare": "pnpm run build",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "clean": "rimraf dist",
+    "dev": "vite build --watch",
+    "test": "vitest run",
+    "test:coverage": "vitest --coverage"
+  },
+  "keywords": [
+    "bbcode",
+    "ast",
+    "syntax",
+    "tree",
+    "unist",
+    "typescript",
+    "types"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/unist": "^3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

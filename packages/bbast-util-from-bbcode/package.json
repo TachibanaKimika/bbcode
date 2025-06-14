@@ -1,0 +1,46 @@
+{
+  "name": "@onachi/bbast-util-from-bbcode",
+  "version": "0.0.2",
+  "description": "Utility to convert BBCode text to bbast syntax tree",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "prepare": "pnpm run build",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "clean": "rimraf dist",
+    "dev": "vite build --watch",
+    "test": "vitest run",
+    "test:coverage": "vitest --coverage",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "bbcode",
+    "ast",
+    "parse",
+    "parser",
+    "bbast",
+    "unist",
+    "utility",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/unist": "^3",
+    "@onachi/bbast": "0.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

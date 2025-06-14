@@ -1,0 +1,52 @@
+{
+  "name": "@onachi/bbast-util-to-hast",
+  "version": "0.0.2",
+  "description": "Utility to convert bbast syntax tree to hast (HTML AST)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "prepare": "pnpm run build",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "clean": "rimraf dist",
+    "dev": "vite build --watch",
+    "test": "vitest run",
+    "test:coverage": "vitest --coverage",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "bbcode",
+    "ast",
+    "hast",
+    "html",
+    "convert",
+    "transform",
+    "bbast",
+    "unist",
+    "utility",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@onachi/bbast": "0.0.3",
+    "@types/hast": "^3.0.4",
+    "@types/unist": "^3"
+  },
+  "devDependencies": {
+    "hast-util-to-html": "^9"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "bbcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "build:bbast": "pnpm --filter @onachi/bbast run build",
+    "build:parser": "pnpm --filter @onachi/bbcode-parser run build",
+    "test": "pnpm -r run test",
+    "test:bbast": "pnpm --filter @onachi/bbast run test",
+    "test:parser": "pnpm --filter @onachi/bbcode-parser run test",
+    "clean": "pnpm -r run clean",
+    "type-check": "pnpm -r run type-check",
+    "publish:patch": "node scripts/auto-publish.js patch",
+    "publish:minor": "node scripts/auto-publish.js minor", 
+    "publish:major": "node scripts/auto-publish.js major",
+    "publish:beta": "node scripts/auto-publish.js beta",
+    "test:publish": "node scripts/test-auto-publish.js",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3",
+    "unified": "^11.0.5",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.3"
+  }
+}
