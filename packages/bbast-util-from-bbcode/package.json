@@ -1,6 +1,6 @@
 {
   "name": "@onachi/bbast-util-from-bbcode",
-  "version": "0.0.3",
+  "version": "0.1.6",
   "description": "Utility to convert BBCode text to bbast syntax tree",
   "type": "module",
   "exports": {
@@ -38,7 +38,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/unist": "^3",
-    "@onachi/bbast": "0.0.4"
+    "@onachi/bbast": "0.1.6"
   },
   "publishConfig": {
     "access": "public"

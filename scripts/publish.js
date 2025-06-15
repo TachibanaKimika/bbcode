@@ -250,19 +250,6 @@ async function main() {
     // 构建包
     console.log(`🔨 Building ${pkg}...`);
     exec(`pnpm --filter @onachi/${pkg} run build`);
-    
-    // 发布到 npm
-    console.log(`📤 Publishing ${pkg} to npm...`);
-    try {
-      const publishCommand = versionType === 'beta' 
-        ? `cd packages/${pkg} && npm publish --tag beta`
-        : `cd packages/${pkg} && npm publish`;
-      exec(publishCommand);
-      console.log(`✅ Successfully published ${pkg}@${newVersion}`);
-    } catch (error) {
-      console.error(`❌ Failed to publish ${pkg}:`, error.message);
-      // 继续处理其他包
-    }
   }
   
   // 更新工作区中的依赖版本
@@ -280,6 +267,21 @@ async function main() {
     // exec(`git tag ${tagName}`);
     // console.log(`🏷️  Created tag: ${tagName}`);
   }
+
+  Object.keys(publishedPackages).forEach(pkg => {
+    // 发布到 npm
+    console.log(`📤 Publishing ${pkg} to npm...`);
+    try {
+      const publishCommand = versionType === 'beta' 
+        ? `cd packages/${pkg} && npm publish --tag beta`
+        : `cd packages/${pkg} && npm publish`;
+      exec(publishCommand);
+      console.log(`✅ Successfully published ${pkg}@${publishedPackages[pkg]}`);
+    } catch (error) {
+      console.error(`❌ Failed to publish ${pkg}:`, error.message);
+      // 继续处理其他包
+    }
+  })
   
   console.log('\n🎉 Manual publish process completed!');
   console.log('\n📋 Usage:');

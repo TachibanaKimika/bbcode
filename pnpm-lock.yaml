@@ -39,7 +39,7 @@ importers:
   packages/bbast-util-from-bbcode:
     dependencies:
       '@onachi/bbast':
-        specifier: 0.0.1
+        specifier: 0.1.5
         version: link:../bbast
       '@types/unist':
         specifier: ^3
@@ -48,7 +48,7 @@ importers:
   packages/bbast-util-to-hast:
     dependencies:
       '@onachi/bbast':
-        specifier: 0.0.1
+        specifier: 0.1.5
         version: link:../bbast
       '@types/hast':
         specifier: ^3.0.4
@@ -64,11 +64,11 @@ importers:
   packages/bbcode-parser:
     dependencies:
       '@onachi/bbast-util-from-bbcode':
-        specifier: 0.0.1
+        specifier: 0.1.5
         version: link:../bbast-util-from-bbcode
     devDependencies:
       '@onachi/bbast-util-to-hast':
-        specifier: 0.0.1
+        specifier: 0.1.5
         version: link:../bbast-util-to-hast
       rehype-stringify:
         specifier: ^10.0.1
@@ -77,17 +77,17 @@ importers:
   packages/bbcode-rehype:
     dependencies:
       '@onachi/bbast-util-to-hast':
-        specifier: 0.0.1
+        specifier: 0.1.5
         version: link:../bbast-util-to-hast
     devDependencies:
       '@onachi/bbast':
-        specifier: 0.0.1
+        specifier: 0.1.5
         version: link:../bbast
       '@onachi/bbast-util-from-bbcode':
-        specifier: 0.0.1
+        specifier: 0.1.5
         version: link:../bbast-util-from-bbcode
       '@onachi/bbcode-parser':
-        specifier: 0.0.1
+        specifier: 0.1.5
         version: link:../bbcode-parser
       '@types/hast':
         specifier: 3.0.4

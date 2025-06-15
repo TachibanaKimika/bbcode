@@ -430,22 +430,55 @@ line2[/b]`
       expect(ast.children[0]?.position).toBeDefined()
     })
 
-    it('should create generic BBTag for unknown tags', () => {
-      const ast = fromBBCode('[unknown]content[/unknown]', { paragraphs: false })
+    it('should treat unknown tags as text', () => {
+      const ast = fromBBCode('[from xxx]content[/from]', { paragraphs: false })
+      expect(ast.children.every(i => i.type === 'text')).toBeTruthy()
+    })
+
+    it('should support custom tags', () => {
+      const customTags = {
+        from: (tagName: string, attributes: Record<string, string | boolean>) => ({
+          type: 'bbtag' as const,
+          tagName,
+          attributes,
+          children: [] as any[]
+        })
+      }
+      
+      const ast = fromBBCode('[from xxx]content[/from]', { 
+        paragraphs: false,
+        customTags
+      })
       expect(ast.children).toHaveLength(1)
       
-      const unknown = ast.children[0]
-      expect(unknown?.type).toBe('bbtag')
-      expect(unknown?.position).toBeDefined()
+      const customTag = ast.children[0]
+      expect(customTag?.type).toBe('bbtag')
       
-      if (unknown && 'tagName' in unknown) {
-        expect(unknown.tagName).toBe('unknown')
+      if (customTag && 'tagName' in customTag) {
+        expect(customTag.tagName).toBe('from')
         
-        if ('children' in unknown) {
-          expect(unknown.children[0]?.type).toBe('text')
-          expect(unknown.children[0]?.position).toBeDefined()
+        if ('children' in customTag) {
+          expect(customTag.children[0]?.type).toBe('text')
+          if (customTag.children[0] && 'value' in customTag.children[0]) {
+            expect(customTag.children[0].value).toBe('content')
+          }
         }
       }
+    })
+
+    it('should parse supported tags in unknown tag', () => {
+      const ast = fromBBCode('[unknown xxx][url=https://example.com]link[/url][/unknown]', { 
+        paragraphs: false,
+      })
+      
+      const linkNode = ast.children.find(child => child.type === 'link');
+      expect(linkNode).toBeDefined()
+
+      const ast2 = fromBBCode('[unknown [url=https://example.com]link[/url]]', {
+        paragraphs: false,
+      })
+      const linkNode2 = ast2.children.find(child => child.type === 'link');
+      expect(linkNode2).toBeDefined()
     })
   })
 })

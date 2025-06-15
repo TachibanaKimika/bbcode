@@ -1,6 +1,6 @@
 {
   "name": "@onachi/bbast",
-  "version": "0.0.4",
+  "version": "0.1.6",
   "description": "BBCode abstract syntax tree types and utilities based on unist",
   "type": "module",
   "exports": {

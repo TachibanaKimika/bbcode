@@ -112,6 +112,13 @@ function parseTag(input: string, start: number): { token: Token; nextPosition: n
 
   position++ // Skip the closing ]
 
+  // Check if this looks like a valid tag format
+  // Tags should not contain [ characters (which would indicate nested tags)
+  if (tagContent.includes('[')) {
+    // This is likely an invalid tag containing nested content, return null
+    return null
+  }
+
   // Parse tag content
   const isClosingTag = tagContent.startsWith('/')
   if (isClosingTag) {
@@ -233,6 +240,34 @@ function parseText(input: string, start: number): { token: Token; nextPosition: 
   }
 }
 
+/**
+ * Re-tokenize text to find embedded tags
+ */
+function retokenizeText(text: string, originalPosition: { start: number; end: number }, _options: Required<ParseOptions>): Token[] {
+  // Only retokenize if the text contains potential tag markers
+  if (!text.includes('[') || !text.includes(']')) {
+    return [{
+      type: 'text' as const,
+      value: text,
+      position: originalPosition
+    }]
+  }
+
+  // Simple approach: re-tokenize the text content to look for embedded tags
+  const subTokens = tokenize(text)
+  
+  // Adjust positions based on original position
+  const adjustedTokens = subTokens.map(token => ({
+    ...token,
+    position: {
+      start: originalPosition.start + token.position.start,
+      end: originalPosition.start + token.position.end
+    }
+  }))
+
+  return adjustedTokens
+}
+
 // =============================================================================
 // Position utilities
 // =============================================================================
@@ -310,9 +345,17 @@ function parseTokens(tokens: Token[], options: Required<ParseOptions>): BBConten
 
     switch (token.type) {
       case 'text': {
-        const textNode = createTextNode(token.value, options, token)
-        if (textNode) {
-          addToCurrentLevel(textNode)
+        // Check if this text contains potential tags that weren't parsed
+        const reparsedTokens = retokenizeText(token.value, token.position, options)
+        if (reparsedTokens.length > 1) {
+          // If we found embedded tags, parse them recursively
+          const reparsedNodes = parseTokens(reparsedTokens, options)
+          reparsedNodes.forEach(node => addToCurrentLevel(node))
+        } else {
+          const textNode = createTextNode(token.value, options, token)
+          if (textNode) {
+            addToCurrentLevel(textNode)
+          }
         }
         break
       }
@@ -576,14 +619,8 @@ function createTagNode(
       break
 
     default:
-      // Unknown tag, create generic BBTag
-      node = {
-        type: 'bbtag',
-        tagName: lowerTagName,
-        attributes,
-        children: []
-      }
-      break
+      // Unknown tag, return null to treat as text
+      return null
   }
 
   // Add position if available and node was created
